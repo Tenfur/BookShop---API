@@ -1,8 +1,9 @@
 import express from "express";
-import connectDatabase from "../database/config.js";
-import router from "../routes/index.js";
 import cors from "cors";
 import helmet from "helmet";
+import fileUpload from "express-fileupload";
+import connectDatabase from "../database/config.js";
+import router from "../routes/index.js";
 
 class Server{
     constructor(){
@@ -26,6 +27,15 @@ class Server{
 
         // Lecture
         this.app.use(express.json());
+
+        // Allow files
+        this.app.use(express.urlencoded({extended: true}));
+
+        // Files
+        this.app.use(fileUpload({
+            useTempFiles: true,
+            tempFileDir: "/tmp/"
+        }));
     }
     router(){
         router(this.app);

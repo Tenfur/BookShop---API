@@ -13,6 +13,9 @@ const bookSchema = new mongoose.Schema({
     price:{
         type: Number
     },
+    image_url: {
+        type: String
+    },
     autorId:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "authors",

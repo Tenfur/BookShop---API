@@ -22,7 +22,8 @@ router.get("/", async (req, res, next) => {
 // Create book
 router.post("/", validatorHandler(createBookSchema, "body"), async (req, res, next) => {
     try{
-        await bookService.create(req.body);
+        const {tempFilePath} = req.files.img;
+        await bookService.create(req.body, tempFilePath);
         res.status(200).send({
             message: "Book created correctly!"
         })
