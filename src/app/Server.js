@@ -31,8 +31,8 @@ class Server{
         router(this.app);
     }
     listen(){
-        this.app.listen(3000, () => {
-            console.log("Running port 3000")
+        this.app.listen(process.env.PORT || 4000, () => {
+            console.log(`Running on port ${process.env.PORT}`)
         })
     }
 }
